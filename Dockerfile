@@ -6,4 +6,4 @@ RUN $HOME/.cargo/bin/rustup install 1.41.0 && $HOME/.cargo/bin/rustup default 1.
 ADD . /tmp/celo-addr-gen
 RUN cd /tmp/celo-addr-gen && $HOME/.cargo/bin/cargo build --target x86_64-unknown-linux-musl --release
 
-CMD ["/tmp/addr-gen/target/x86_64-unknown-linux-musl/release/celo-addr-gen"]
+ENTRYPOINT ["/tmp/celo-addr-gen/target/x86_64-unknown-linux-musl/release/celo-addr-gen"]
