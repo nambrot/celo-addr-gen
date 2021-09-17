@@ -14,7 +14,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::env;
 
-const CELO_DERIVATION_PATH: &str = "m/44'/52752'/0'/0/0";
+const ETH_DERIVATION_PATH: &str = "m/44'/60'/0'/0/0";
 
 pub fn encode_hex(bytes: &[u8]) -> String {
     let mut s = String::with_capacity(bytes.len() * 2);
@@ -59,7 +59,7 @@ fn main() {
     let seed = Seed::new(&mnemonic, passphrase);
     let private_key = ExtendedPrivKey::with_seed(seed.as_bytes()).unwrap();
     let key_chain = hdwallet::DefaultKeyChain::new(private_key);
-    let (child_key, _d) = key_chain.derive_private_key(CELO_DERIVATION_PATH.into()).unwrap();
+    let (child_key, _d) = key_chain.derive_private_key(ETH_DERIVATION_PATH.into()).unwrap();
 
     if output_private_key {
         println!("0x{}", &encode_hex(&child_key.serialize()));
